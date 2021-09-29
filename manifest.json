@@ -15,9 +15,9 @@
     "description": "Solve Leetcode first to waste away your time",
     "homepage_url": "https://github.com/Doohwancho/LeetcodeFirst",
     "icons": {
-        "48": "src/assets/icons/white_48.png"
+        "48": "src/assets/icons/white_48.png",
+        "128": "src/assets/icons/white_128.png"
     },
-    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhLoyteL4x7dJAQEHxPAxbWsx1Wxn4knEeBLFX/WxLCsbsQn8PzeX5u/TiZOFRPq+VcCSZVearsOXDUXzCtrOVGfDpqZxMdVJV/SJ2sVYE2QX4y/WfHOoZfMIpo4BzUcmBlBJ0lk4cJvIJR+o5vTYMmaalbWYddPfvezM/iCzRTiCP4hljzZJZvp1eNblebsIABWKBmALtgbEcw/qCc2e+YRcYZo5UtKfRBstcch0vtZRgg59lOBp7QCg694wo1zKxjyElW0Uqya/24qz2XdPQ2u2/0kkpw+6/Ja5NqVdV96H339kxOLbMrDpnkajuOaGoxAuL9K0L8wflQLZsOUoJQIDAQAB",
     "manifest_version": 2,
     "name": "LeetCode First",
     "permissions": ["tabs", "storage"],
