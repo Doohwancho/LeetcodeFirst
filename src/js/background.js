@@ -1,19 +1,19 @@
-function isAccessingYoutube(changeInfo, tab) {
-    // from other page to youtube
-    if (changeInfo.status == 'loading' && changeInfo.url && isYoutubeURL(changeInfo.url)) {
-        return true;
-    }
-    // refresh in youtube
-    else if (changeInfo.status == 'loading' && isYoutubeURL(tab.url)) {
-        return true;
+function extractDomainURL(url){
+    return /[^.]+.([^.]+)/.exec(url)[1];
+}
+
+function checkAccessible(domainURL){
+    return siteToBlock.indexOf(domainURL) > -1;
+}
+
+function isAccessingMarkedWebsites(changeInfo, tab){
+    if(changeInfo.status == 'loading'){
+        let domainURL = extractDomainURL(tab.url);
+        return checkAccessible(domainURL);
     }
     return false;
 }
 
-function isYoutubeURL(url) {
-    var reg =  new RegExp(/https?:\/\/(www\.)?youtube.com\/.*/)
-    return url.match(reg);
-}
 
 function isLeetcodeSubmissionURL(url) {
     var reg =  new RegExp(/https?:\/\/(www\.)?leetcode.com\/problems\/.*\/submissions\/?/)
@@ -41,7 +41,7 @@ function isTimeOver(lastAcceptedDatetime, hourUnit){
 
 chrome.tabs.onUpdated.addListener( 
     function(tabId, changeInfo, tab) {
-        if (isAccessingYoutube(changeInfo, tab)) { 
+        if (isAccessingMarkedWebsites(changeInfo, tab)) { 
             chrome.storage.sync.get({
                 features: {
                     autoRedirection: {
