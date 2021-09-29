@@ -1,0 +1,26 @@
+{
+    "author": "cho-cho",
+    "background": {
+       "persistent": false,
+       "scripts": [ "src/js/background.js" ]
+    },
+    "browser_action": {
+       "default_popup": "popup.html"
+    },
+    "content_scripts": [ {
+       "js": [],
+       "matches": [],
+       "run_at": ""
+    } ],
+    "description": "Solve Leetcode first to waste away your time",
+    "homepage_url": "https://github.com/Doohwancho/LeetcodeFirst",
+    "icons": {
+    },
+    "manifest_version": 2,
+    "name": "LeetCode First",
+    "permissions": [],
+    "short_name": "LF",
+    "update_url": "",
+    "version": "0.0.1"
+ }
+ 
