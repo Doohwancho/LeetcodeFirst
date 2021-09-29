@@ -53,6 +53,7 @@ chrome.tabs.onUpdated.addListener(
             },
             function(option) {
                 if (option.features.autoRedirection.enabled && isTimeOver(option.lastAcceptedDatetime, option.features.autoRedirection.hourUnit)) { 
+                    chrome.browserAction.setIcon({path:'src/assets/icons/white.png'});
                     chrome.tabs.update(tabId, {url: chrome.extension.getURL('src/redirectToLeetcode.html')});
                 }
             });
