@@ -1,17 +1,45 @@
-let autoRedirection = document.getElementById('auto-redirection');
-var hourUnit = document.getElementById('hour-unit');
+let autoRedirectionDOM = document.getElementById('auto-redirection');
+let hourUnitDOM = document.getElementById('hour-unit');
+let lastAcceptedSubmissionDOM = document.getElementById('lastAcceptedSubmission');
 
-autoRedirection.addEventListener("change", function(e){
-    chrome.storage.sync.set({'autoRedirection': e.target.checked });
+
+autoRedirectionDOM.addEventListener("change", function(e){
+    chrome.storage.sync.set({
+        features: {
+            autoRedirection: {
+                enabled: e.target.checked,
+                hourUnit: hourUnitDOM.value,
+            }
+        },
+    });
 });
 
-hourUnit.addEventListener("change", function(e){
-    chrome.storage.sync.set({'hourLimit': e.target.value });
+hourUnitDOM.addEventListener("change", function(e){
+    chrome.storage.sync.set({
+        features: {
+            autoRedirection: {
+                enabled: autoRedirectionDOM.checked,
+                hourUnit: e.target.value,
+            }
+        },
+    });
 });
 
 
-function init() {   
-    chrome.storage.sync.set({'autoRedirection': true,'hourLimit': 12 });
+function updatePopup() {
+    chrome.storage.sync.get({
+        features: {
+            autoRedirection: {
+                enabled: true,
+                hourUnit: 12
+            }
+        },
+        lastAcceptedDatetime: 'DOES NOT EXIST'}, function(option){
+
+        autoRedirectionDOM.checked = option.features.autoRedirection.enabled;
+        hourUnitDOM.value = option.features.autoRedirection.hourUnit;
+        lastAcceptedSubmissionDOM.innerHTML = option.lastAcceptedDatetime;
+    });
 }
 
-document.addEventListener('DOMContentLoaded', init, false);
+document.addEventListener('DOMContentLoaded', updatePopup, false);

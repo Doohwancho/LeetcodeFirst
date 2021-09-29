@@ -15,19 +15,46 @@ function isYoutubeURL(url) {
     return url.match(reg);
 }
 
+function isLeetcodeSubmissionURL(url) {
+    var reg =  new RegExp(/https?:\/\/(www\.)?leetcode.com\/problems\/.*\/submissions\/?/)
+    return url.match(reg);
+}
 
-chrome.tabs.onUpdated.addListener(
+function checkSubmissionTable(tabId) {
+    setTimeout(() => {
+        chrome.tabs.sendMessage(tabId, {message: 'check-submission-table'});
+    }, 2000);
+}
+
+chrome.tabs.onUpdated.addListener( 
     function(tabId, changeInfo, tab) {
         if (isAccessingYoutube(changeInfo, tab)) { 
             chrome.storage.sync.get({
-                autoRedirection: true,
-                hourUnit: 12
+                features: {
+                    autoRedirection: {
+                        enabled: true,
+                        hourUnit: 12
+                    }
+                },
+                lastAcceptedDatetime: null,
             },
             function(option) {
-                if (option.autoRedirection) { 
+                if (option.features.autoRedirection.enabled) { 
                     chrome.tabs.update(tabId, {url: chrome.extension.getURL('src/redirectToLeetcode.html')});
                 }
             });
+        } else if(changeInfo.status == 'complete' && isLeetcodeSubmissionURL(tab.url)){
+            checkSubmissionTable(tabId);
+        }
+    }
+);
+
+
+
+chrome.runtime.onMessage.addListener( //얘가 popup.js에서는 안동작하는 이유는, 팝업이 켜지지 않으면 동작하지 않기 때문에
+    function(request, sender, sendResponse) {
+        if (request.message === 'mission-clear') {
+            chrome.browserAction.setIcon({path:'src/assets/icons/blue_48.png'});
         }
     }
 );
