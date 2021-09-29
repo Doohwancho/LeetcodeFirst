@@ -18,7 +18,7 @@
     },
     "manifest_version": 2,
     "name": "LeetCode First",
-    "permissions": ["storage"],
+    "permissions": ["tabs", "storage"],
     "short_name": "LF",
     "version": "0.0.1"
  }
