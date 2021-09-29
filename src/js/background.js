@@ -26,6 +26,19 @@ function checkSubmissionTable(tabId) {
     }, 2000);
 }
 
+function isTimeOver(lastAcceptedDatetime, hourUnit){
+    if (lastAcceptedDatetime) {
+        var lastAcceptedDate = new Date(lastAcceptedDatetime);
+        var now = new Date();
+        var diff = now - lastAcceptedDate;
+        var diffInHours = Math.floor(diff / 3.6e6);
+        if (diffInHours < hourUnit) {
+            return false; 
+        }
+    }
+    return true;
+}
+
 chrome.tabs.onUpdated.addListener( 
     function(tabId, changeInfo, tab) {
         if (isAccessingYoutube(changeInfo, tab)) { 
@@ -39,7 +52,7 @@ chrome.tabs.onUpdated.addListener(
                 lastAcceptedDatetime: null,
             },
             function(option) {
-                if (option.features.autoRedirection.enabled) { 
+                if (option.features.autoRedirection.enabled && isTimeOver(option.lastAcceptedDatetime, option.features.autoRedirection.hourUnit)) { 
                     chrome.tabs.update(tabId, {url: chrome.extension.getURL('src/redirectToLeetcode.html')});
                 }
             });
