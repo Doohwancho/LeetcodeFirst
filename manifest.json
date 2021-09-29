@@ -8,7 +8,7 @@
        "default_popup": "src/popup.html"
     },
     "content_scripts": [ {
-       "js": ["src/js/background.js"],
+       "js": ["src/js/background.js", "src/js/redirect.js", "src/js/timer.js"],
        "matches": ["*://*/*"],
        "run_at": "document_end"
     } ],
