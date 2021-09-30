@@ -7,7 +7,7 @@ function getResultContainer() {
 }
 
 function getSkeletonContainer() {
-    return document.querySelector('div[class^="skeleton-container"]'); //submit 하는 도중에만 스켈레톤 컨테이너가 생김
+    return document.querySelector('div[class^="skeleton-container"]'); //submit시작하면 생김
 }
 
 function isSubmissionOnProgress(){
@@ -95,3 +95,19 @@ chrome.runtime.onMessage.addListener(
 );
 
 
+// function deleteDifficulty(){
+//     alert(1);
+//     document.querySelector('[diff]').parentNode.remove();
+// }
+
+// document.addEventListener('DOMContentLoaded', deleteDifficulty, false);
+
+// window.onload = function(){
+//     console.log(document.querySelector('[diff]'));
+//     document.querySelector('[diff]').parentNode.remove();
+// }
+
+window.addEventListener('load', function(){ //실행될 코드 });
+    console.log(document.querySelector('[diff]'));
+    document.querySelector('[diff]').parentNode.remove();
+});

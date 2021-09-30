@@ -41,11 +41,28 @@
         <div class="divider border"></div>
 
         <div>
+            Number Of Problem Solved : <b><span id="TotalNumberOfSolvedProblems"></span></b>
+        </div>
+        <div>
+            Easy : <b><span id="EasyLeetcode"></span></b>
+        </div>
+        <div>
+            Medium : <b><span id="MediumLeetcode"></span></b>
+        </div>
+        <div>
+            Hard : <b><span id="HardLeetcode"></span></b>
+        </div>
+
+
+        <div class="divider border"></div>
+
+        <div>
             Last leetcode accepted submission : <b><span id="lastAcceptedSubmission"></span></b>
         </div>
 
         <div id="status" style="margin-top: 10px; font-style: italic;"></div>
 
-        <script src="js/popup.js"></script>
+        <script type="module" src="js/crawlLeetcodeAPI.js"></script>
+        <script type="module" src="js/popup.js"></script>
     </body>
 </html>
