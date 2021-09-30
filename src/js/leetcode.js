@@ -93,21 +93,3 @@ chrome.runtime.onMessage.addListener(
         }
     }
 );
-
-
-// function deleteDifficulty(){
-//     alert(1);
-//     document.querySelector('[diff]').parentNode.remove();
-// }
-
-// document.addEventListener('DOMContentLoaded', deleteDifficulty, false);
-
-// window.onload = function(){
-//     console.log(document.querySelector('[diff]'));
-//     document.querySelector('[diff]').parentNode.remove();
-// }
-
-window.addEventListener('load', function(){ //실행될 코드 });
-    console.log(document.querySelector('[diff]'));
-    document.querySelector('[diff]').parentNode.remove();
-});
